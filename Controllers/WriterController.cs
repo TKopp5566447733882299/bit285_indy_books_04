@@ -35,9 +35,12 @@ namespace IndyBooks.Controllers
 
         // POST api/<WriterController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public IActionResult Post([FromBody] Writer ImputWriter)
         {
 
+            _dbc.Add(ImputWriter);
+            _dbc.SaveChanges();
+            return Accepted();
         }
 
         // PUT api/<WriterController>/5
