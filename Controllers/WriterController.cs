@@ -15,30 +15,35 @@ namespace IndyBooks.Controllers
     [ApiController]
     public class WriterController : ControllerBase
     {
+        private IndyBooksDataContext _dbc;
+        public WriterController(IndyBooksDataContext db) { _dbc = db; }
         // GET: api/<WriterController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IActionResult Get()
         {
-            return new string[] { "value1", "value2" };
+            
+
+
+            return Ok(_dbc.Writers);
         }
 
         // GET api/<WriterController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
+        public IActionResult Get(int id){
+            return Ok(_dbc.Writers.Where(c => c.Id == id));
         }
 
         // POST api/<WriterController>
         [HttpPost]
         public void Post([FromBody] string value)
         {
+
         }
 
         // PUT api/<WriterController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
+        public void Put(int id, [FromBody] string value){
+
         }
 
         // DELETE api/<WriterController>/5
